@@ -1,6 +1,6 @@
 int main(int argc, char const *argv[])
 {
-	pritnf("hello world");
+	pritnf("hello world cx");
 }
 
 
