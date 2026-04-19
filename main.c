@@ -1,5 +1,6 @@
 #include "lcd.h"
 #include "ts.h"
+#include "jpeg.h"
 #include <pthread.h>  //关于线程API接口的头文件   编译时需要指定  -pthread
 
 int ts_fd;
@@ -30,10 +31,20 @@ int main(int argc, char const *argv[])
     pthread_create(&ts_thread,NULL,ts_task,NULL);
 
 	//3.系统开机动画
+	if (NULL != lcdDev)
+	{
+		jpegShow(lcdDev->mp, 0, 0);
+	}
+
+
+
 	
 
-
-	ts_uninit(ts_fd);
+    if (-1 != ts_fd)
+	{
+		ts_uninit(ts_fd);
+	}
+	
 	lcd_uninit(lcdDev);
 }
 

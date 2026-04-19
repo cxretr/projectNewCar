@@ -28,6 +28,7 @@ LcdDev_t *lcd_init(const char *lcd_path)
         errorPrint("lcd->fd error");
         return NULL;
     }
+
     lcd->mp = (int *)mmap(NULL,
                           LCD_MAPSIZE,
                           PROT_READ|PROT_WRITE,
@@ -35,6 +36,10 @@ LcdDev_t *lcd_init(const char *lcd_path)
                           lcd->fd,
                           0
                          ); 
+    if (lcd->mp == MAP_FAILED) {
+       errorPrint("lcd->mp error");
+       return NULL; 
+    }
     
     return lcd;
 }
@@ -58,10 +63,18 @@ void lcd_uninit(LcdDev_t *Lcd)
     }
 
     //解除内存映射
-    munmap(Lcd->mp, LCD_MAPSIZE);
-
+    if (NULL != Lcd->mp)
+    {
+        munmap(Lcd->mp, LCD_MAPSIZE);
+    }
+    
     //关闭LCD屏 
-    close(Lcd->fd);
+    if (-1 != Lcd->fd)
+    {
+        close(Lcd->fd);
+    }
+
+    free(Lcd);
 
     //指针置空
     Lcd = NULL;
