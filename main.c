@@ -36,9 +36,9 @@ int main(int argc, char const *argv[])
 		jpegShow(lcdDev->mp, 0, 0);
 	}
 
+	//4.共享充电桩选择界面
+	jpeg_to_lcd(lcdDev->mp, "./gif/icon.jpg", 0, 0);
 
-
-	
 
     if (-1 != ts_fd)
 	{
