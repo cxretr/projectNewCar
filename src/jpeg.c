@@ -14,6 +14,13 @@
  */
 void jpegShow(int *lcd_mp, int x, int y)
 {
+    //参数有效性分析,判断LCD内存映射的地址是否有效
+	if(NULL == lcd_mp)
+	{
+		errorPrint("lcd mp is invaild\n");
+		return;
+	}
+
     char gif_path[128] = {0};
 
     for (int i = 1; i < jpegcount; i++)
