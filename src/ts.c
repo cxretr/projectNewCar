@@ -1,0 +1,79 @@
+#include "ts.h"
+
+/**
+ * @name       ts_init
+ * @brief      ts initialization LCD初始化
+ * @param      
+ *             @lcd_path Path of ts driver ts驱动的路径
+ * @retval     int   ts file descriptors.   ts文件描述符
+ * @date       2026/04/19
+ * @version    1.0
+ * @note       
+ */
+int ts_init(const char *ts_path)
+{
+    //1.打开触摸屏
+    int ts_fd = open(ts_path,O_RDWR);
+    if (-1 == ts_fd)
+    {
+        errorPrint("error ts -1");
+        return -1;
+    }
+    return ts_fd;
+}
+
+/**
+ * @name       ts_getVal
+ * @brief      ts get coord   ts 获取坐标
+ * @param      
+ *             @fd file descriptors. 文件描述符
+ *             @fd_x coord of x x的坐标
+ *             @fd_y coord of y y的坐标
+ * @retval     none
+ * @date       2026/04/19
+ * @version    1.0
+ * @note       
+ */
+void ts_getVal(int fd, int *fd_x, int *fd_y)
+{
+    int cnt = 0;
+    //2.获取输入设备的信息
+    struct input_event ts_event;
+
+    read(fd,&ts_event,sizeof(ts_event));
+
+    //3.分析读取的设备信息（type + code + value）
+    if (ts_event.type == EV_ABS) //说明是触摸屏
+    {
+        if (ts_event.code == ABS_X)
+        {
+            cnt++;
+            *fd_x = ts_event.value * lcdwidth / tswidth;
+        }
+        if (ts_event.code == ABS_Y)
+        {
+            cnt++;
+            *fd_y = ts_event.value * lcdheight / tsheight;
+        }
+
+        if (cnt >= 2)
+        {
+            cnt = 0;
+        }    
+    }
+}
+
+/**
+ * @name       ts_uninit
+ * @brief      ts uninitialization LCD解除初始化
+ * @param      
+ *             @fd file descriptors. 文件描述符
+ * @retval     none
+ * @date       2026/04/19
+ * @version    1.0
+ * @note       
+ */
+void ts_uninit(int fd)
+{
+    close(fd);
+}
