@@ -1,6 +1,7 @@
 #include "lcd.h"
 #include "ts.h"
 #include "jpeg.h"
+#include "usefont.h"
 #include <pthread.h>  //关于线程API接口的头文件   编译时需要指定  -pthread
 
 int ts_fd;
@@ -39,6 +40,7 @@ int main(int argc, char const *argv[])
 	//4.共享充电桩选择界面
 	jpeg_to_lcd(lcdDev->mp, "./gif/icon.jpg", 0, 0);
 
+    font_usefont(lcdDev->mp,"我是用户",32,200,200,0,255,0,0,0,0,0,0,300,300);
 
     if (-1 != ts_fd)
 	{

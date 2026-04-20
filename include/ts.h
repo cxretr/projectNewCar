@@ -29,7 +29,7 @@
 
 /**
  * @name       ts_init
- * @brief      ts initialization LCD初始化
+ * @brief      ts initialization ts初始化
  * @param      
  *             @lcd_path Path of ts driver ts驱动的路径
  * @retval     int   ts file descriptors.   ts文件描述符
