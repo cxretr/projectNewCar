@@ -39,7 +39,9 @@ void font_usefont(int *lcd_mp,const char *str, s32 Font_Size,
 	//3.创建一个画板（点阵图）
 	bitmap *bm = createBitmapWithInit(bmWith,bmHeight,4,getColor(bmcolorA,bmcolorR,bmcolorG,bmcolorB)); //也可使用createBitmapWithInit函数，改变画板颜色
 	
-	char buf[] = str;
+	// char buf[] = str;  不行
+	char buf[256];   // 假设最大长度 256
+	strcpy(buf, str);
 	
 	//6.将字体写到点阵图上
 	fontPrint(f,bm,0,0,buf,getColor(ftcolorA,ftcolorR,ftcolorG,ftcolorB),0);

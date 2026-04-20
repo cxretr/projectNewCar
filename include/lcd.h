@@ -17,6 +17,7 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <sys/mman.h>
+#include <unistd.h>
 #include "log.h"
 
 //LCD屏的设备路径，根据实际情况修改

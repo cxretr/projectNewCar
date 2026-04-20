@@ -1,3 +1,4 @@
+//arm-linux-gcc main.c ./src/*.c -o ./bin/main -I ./include/ -L ./lib/ -ljpeg -lfont -lm -pthread
 #include "lcd.h"
 #include "ts.h"
 #include "jpeg.h"
@@ -14,7 +15,7 @@ void * ts_task(void *arg)
     //调用死循环，并且不会退出
     while(1)
     {
-        ts_getval(ts_fd,&ts_x,&ts_y); //获取触摸屏坐标
+        ts_getVal(ts_fd,&ts_x,&ts_y); //获取触摸屏坐标
 		printf("ts x: %d\n",ts_x);
 		printf("ts y: %d\n",ts_y);
     }

@@ -2,6 +2,7 @@
 #define USEFONT_H
 
 #include "font.h"
+#include <string.h>
 
 /**
  * @name       font_usefont
