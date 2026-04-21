@@ -34,14 +34,14 @@ void LogPrint(const char* str)
 {
     if (!g_log_enabled)
     {
-        printf("log_enabled false"); 
+        printf("log_enabled false\n"); 
         return;
     }
     
-    printf("log: %s",str);
+    printf("log: %s\n",str);
     if(!fileLogPrint(str))
     {
-        printf("file log error");    
+        printf("file log error\n");    
     }
 }
 
@@ -60,7 +60,7 @@ bool fileLogPrint(const char* Filestr)
     FILE *file = fopen("log.txt", "ab");
     if (NULL == file)
     {
-        perror("log file open error"); 
+        perror("log file open error\n"); 
         return false;
     }
     char strtime[400]; 
@@ -71,7 +71,7 @@ bool fileLogPrint(const char* Filestr)
     tminfo = localtime(&Now);
     if (NULL == tminfo)
     {
-        perror("localtime");
+        perror("localtime\n");
         fclose(file);
         return false;
     }
