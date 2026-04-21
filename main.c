@@ -28,6 +28,10 @@ int main(int argc, char const *argv[])
 	//1.LCD屏初始化
 	LogPrint("LCDinit");
 	LcdDev_t *lcdDev = lcd_init(LCD_PATH);
+
+	// 清屏为白色（0xFFFFFFFF 为不透明白色）
+	lcd_clear(lcdDev->mp, 0xFFFFFFFF);
+
 	//2.触摸屏初始化
 	LogPrint("TSinit");
 	ts_fd = ts_init(TsPath);
@@ -44,8 +48,8 @@ int main(int argc, char const *argv[])
 		jpegShow(lcdDev->mp, 0, 40);
 	}
 
-	// 清屏为黑色（0xFF000000 为不透明黑色）
-	lcd_clear(lcdDev->mp, 0xFF000000);
+	// 清屏为白色（0xFFFFFFFF 为不透明白色）
+	lcd_clear(lcdDev->mp, 0xFFFFFFFF);
 
 	//4.共享充电桩选择界面
 	LogPrint("jpeg_to_lcd");
@@ -53,7 +57,9 @@ int main(int argc, char const *argv[])
 
     //5.显示文字界面
 	LogPrint("font_usefont");
-    font_usefont(lcdDev->mp,"我是用户",32,200,200,0,255,0,0,0,0,0,0,0,0);
+    font_usefont(lcdDev->mp,"共享充电桩系统",32,150,100,0,0,0,0,255,255,255,255,300,150);
+    font_usefont(lcdDev->mp,"我是商家",32,150,100,0,0,0,0,255,255,255,255,220,580);
+    font_usefont(lcdDev->mp,"我是用户",32,150,100,0,0,0,0,255,255,255,255,305,580);
 
     if (-1 != ts_fd)
 	{
