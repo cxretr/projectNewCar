@@ -4,6 +4,7 @@
 #include "jpeg.h"
 #include "usefont.h"
 #include "log.h"
+#include "interfaceui.h"
 #include <pthread.h>  //关于线程API接口的头文件   编译时需要指定  -pthread
 
 int ts_fd;
@@ -45,33 +46,15 @@ int main(int argc, char const *argv[])
 	if (NULL != lcdDev)
 	{
 		LogPrint("jpegShow");
-		jpegShow(lcdDev->mp, 0, 40);
+		BootAnimation(lcdDev);
 	}
 
 	// 清屏为白色（0xFFFFFFFF 为不透明白色）
 	lcd_clear(lcdDev->mp, 0xFFFFFFFF);
 
 	//4.共享充电桩选择界面
-	LogPrint("jpeg_to_lcd");
-	jpeg_to_lcd(lcdDev->mp, "./gif/icon.jpg", 200, 150);
-
-    //5.显示文字界面
-	LogPrint("font_usefont");
-    font_usefont(lcdDev->mp,"共享充电桩系统",
-	            32,250,50,
-	            0,255,255,255,
-				255,0,0,0,
-				300,50);
-    font_usefont(lcdDev->mp,"我是商家",
-				22,85,20,
-				0,236,237,239,
-				255,0,0,0,
-				270,350);
-    font_usefont(lcdDev->mp,"我是用户",
-				22,85,20,
-				0,236,237,239,
-				255,0,0,0,
-				450,350);
+	LogPrint("SelectionInterface");
+	SelectionInterface(lcdDev);
 
     if (-1 != ts_fd)
 	{
