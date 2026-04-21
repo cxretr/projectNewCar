@@ -31,7 +31,7 @@ void font_usefont(int *lcd_mp,const char *str, s32 Font_Size,
 				)
 {
 	//1.打开开发板路径下TrueType字库
-	font *f = fontLoad("./simkai.ttf");
+	font *f = fontLoad("./font/simkai.ttf");
 
 	//2.字体大小的设置
 	fontSetSize(f,Font_Size);
