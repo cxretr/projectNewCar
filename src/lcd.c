@@ -45,6 +45,24 @@ LcdDev_t *lcd_init(const char *lcd_path)
 }
 
 /**
+ * @name       lcd_clear
+ * @brief      LCD clear LCD清屏
+ * @param      
+ *             @lcd_mp Mapping space 映射空间
+ *             @color  color 颜色
+ * @retval     none
+ * @date       2026/04/19
+ * @version    1.0
+ * @note       
+ */
+void lcd_clear(unsigned int *lcd_mp, unsigned int color) 
+{
+    for (int i = 0; i < 800 * 480; i++) {
+        lcd_mp[i] = color;
+    }
+}
+
+/**
  * @name       lcd_uninit
  * @brief      LCD uninitialization LCD解除初始化
  * @param      

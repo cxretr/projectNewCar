@@ -44,9 +44,12 @@ int main(int argc, char const *argv[])
 		jpegShow(lcdDev->mp, 0, 40);
 	}
 
+	// 清屏为黑色（0xFF000000 为不透明黑色）
+	lcd_clear(lcdDev->mp, 0xFF000000);
+
 	//4.共享充电桩选择界面
 	LogPrint("jpeg_to_lcd");
-	jpeg_to_lcd(lcdDev->mp, "./gif/icon.jpg", 200, 250);
+	jpeg_to_lcd(lcdDev->mp, "./gif/icon.jpg", 200, 150);
 
     //5.显示文字界面
 	LogPrint("font_usefont");
