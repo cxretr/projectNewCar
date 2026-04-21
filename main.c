@@ -41,16 +41,16 @@ int main(int argc, char const *argv[])
 	if (NULL != lcdDev)
 	{
 		LogPrint("jpegShow");
-		jpegShow(lcdDev->mp, 0, 0);
+		jpegShow(lcdDev->mp, 0, 40);
 	}
 
 	//4.共享充电桩选择界面
 	LogPrint("jpeg_to_lcd");
-	jpeg_to_lcd(lcdDev->mp, "./gif/icon.jpg", 0, 0);
+	jpeg_to_lcd(lcdDev->mp, "./gif/icon.jpg", 200, 250);
 
     //5.显示文字界面
 	LogPrint("font_usefont");
-    font_usefont(lcdDev->mp,"我是用户",32,200,200,0,255,0,0,0,0,0,0,300,300);
+    font_usefont(lcdDev->mp,"我是用户",32,200,200,0,255,0,0,0,0,0,0,0,0);
 
     if (-1 != ts_fd)
 	{
