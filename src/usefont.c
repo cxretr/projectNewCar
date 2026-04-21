@@ -9,13 +9,13 @@
  *			   @bmWith   canvas width  画布宽度
  *             @bmHeight canvas height  画布高度
  * 			   @bmcolorA canvas color A  画布颜色A
- *             @bmcolorR canvas color R  画布颜色R	
+ *             @bmcolorR canvas color B  画布颜色B	
  *             @bmcolorG canvas color G  画布颜色G
- *             @bmcolorB canvas color B 画布颜色B
+ *             @bmcolorB canvas color R 画布颜色R
  *			   @ftcolorA text color A  文字颜色A
- *             @ftcolorR text color R  文字颜色R
+ *             @ftcolorR text color B  文字颜色B
  *             @ftcolorG text color G  文字颜色G
- *             @ftcolorB text color B  文字颜色B	
+ *             @ftcolorB text color R  文字颜色R	
  *		       @s32 lcdst_x start position x 起始位置x
  *             @s32 lcdst_y start position y 起始位置y
  * @retval     none
@@ -37,14 +37,14 @@ void font_usefont(int *lcd_mp,const char *str, s32 Font_Size,
 	fontSetSize(f,Font_Size);
 	
 	//3.创建一个画板（点阵图）
-	bitmap *bm = createBitmapWithInit(bmWith,bmHeight,4,getColor(bmcolorA,bmcolorR,bmcolorG,bmcolorB)); //也可使用createBitmapWithInit函数，改变画板颜色
+	bitmap *bm = createBitmapWithInit(bmWith,bmHeight,4,getColor(bmcolorA,bmcolorB,bmcolorG,bmcolorR)); //也可使用createBitmapWithInit函数，改变画板颜色
 	
 	// char buf[] = str;  不行
 	char buf[256];   // 假设最大长度 256
 	strcpy(buf, str);
 	
 	//6.将字体写到点阵图上
-	fontPrint(f,bm,0,0,buf,getColor(ftcolorA,ftcolorR,ftcolorG,ftcolorB),0);
+	fontPrint(f,bm,0,0,buf,getColor(ftcolorA,ftcolorB,ftcolorG,ftcolorR),0);
 	
 	//7.把字体框输出到LCD屏幕上
 	show_font_to_lcd(lcd_mp,lcdst_x,lcdst_y,bm);
