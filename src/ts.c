@@ -63,6 +63,39 @@ void ts_getVal(int fd, int *fd_x, int *fd_y)
     }
 }
 
+//用户点击触摸屏
+int SelectedLcd()
+{
+    LogPrint("Waiting for user selection");
+    int selected = 0;
+    while (!selected) {
+        int x = 0, y = 0;
+        pthread_mutex_lock(&touch_mutex);
+        if (touch_pending) {
+            x = ts_x;
+            y = ts_y;
+            touch_pending = 0;
+        }
+        pthread_mutex_unlock(&touch_mutex);
+
+        if (x != 0 || y != 0)
+        {
+            printf("Touch at (%d, %d)", x, y);
+            // 根据选择界面的按钮区域判断（示例坐标，请根据实际界面修改）
+            if (x >= 350 && x <= 600 && y >= 0 && y <= 250) {
+                LogPrint("Charging pile 1 selected");
+                selected = 1;
+            } else if (x >= 400 && x <= 600 && y >= 200 && y <= 250) {
+                LogPrint("Charging pile 2 selected");
+                selected = 1;
+            } else {
+                LogPrint("Invalid area, continue waiting");
+            }
+        }
+        usleep(50000);  // 50ms 轮询
+    }
+}
+
 /**
  * @name       ts_uninit
  * @brief      ts uninitialization LCD解除初始化

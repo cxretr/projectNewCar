@@ -19,4 +19,16 @@
  */
 void BootAnimation(LcdDev_t *lcdDev);
 
+/**
+ * @name       SelectionInterface
+ * @brief      Selection Interface Selection Interface 选择界面
+ * @param      
+ *             @lcdDev LCD device information lcd设备信息
+ * @retval     none
+ * @date       2026/04/21
+ * @version    1.0
+ * @note       
+ */
+void SelectionInterface(LcdDev_t *lcdDev);
+
 #endif // INTERFACEUI_H

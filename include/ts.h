@@ -20,6 +20,7 @@
 #include<sys/mman.h>
 #include<linux/input.h>
 #include "log.h"
+#include "ts_task.h"
 
 #define TsPath "/dev/input/event0"
 #define lcdwidth 800

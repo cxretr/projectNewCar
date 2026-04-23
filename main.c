@@ -5,24 +5,7 @@
 #include "usefont.h"
 #include "log.h"
 #include "interfaceui.h"
-#include <pthread.h>  //关于线程API接口的头文件   编译时需要指定  -pthread
-
-int ts_fd;
-int ts_x;
-int ts_y;
-
-//调用线程
-void *ts_task(void *arg)
-{
-	LogPrint("ts_thread start");
-    //调用死循环，并且不会退出
-    while(1)
-    {
-        ts_getVal(ts_fd,&ts_x,&ts_y); //获取触摸屏坐标
-		printf("ts x: %d\n",ts_x);
-		printf("ts y: %d\n",ts_y);
-    }
-}
+#include "ts_task.h"  //关于线程API接口的头文件   编译时需要指定  -pthread
 
 int main(int argc, char const *argv[])
 {
@@ -42,7 +25,7 @@ int main(int argc, char const *argv[])
     pthread_t ts_thread;
     pthread_create(&ts_thread,NULL,ts_task,NULL);
 
-	//3.系统开机动画
+	//4.系统开机动画
 	if (NULL != lcdDev)
 	{
 		LogPrint("jpegShow");
@@ -52,11 +35,11 @@ int main(int argc, char const *argv[])
 	// 清屏为白色（0xFFFFFFFF 为不透明白色）
 	lcd_clear(lcdDev->mp, 0xFFFFFFFF);
 
-	//4.共享充电桩选择界面
+	//5.共享充电桩选择界面
 	LogPrint("SelectionInterface");
 	SelectionInterface(lcdDev);
 
-	//5.等待用户点击
+	//6.等待用户点击
 
     if (-1 != ts_fd)
 	{
