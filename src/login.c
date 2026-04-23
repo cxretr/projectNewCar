@@ -3,7 +3,7 @@
 
 void login(LcdDev_t *lcdDev)
 {
-    void showLogin(lcdDev);
+    showLogin(lcdDev);
 
 }
 

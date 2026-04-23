@@ -101,6 +101,7 @@ void showLogin(LcdDev_t *lcdDev)
 
     //5.显示文字界面
 	LogPrint("font_usefont");
+	char digit[2];
 	for (int i = 1;i <= 9;i++)
 	{
 		int w_a = 0;
@@ -110,7 +111,9 @@ void showLogin(LcdDev_t *lcdDev)
 			w_a = 0;
 			h_a *=10;
 		}
-		font_usefont(lcdDev->mp,i + '0',
+		digit[0] = '0' + i;
+		digit[1] = '\0';
+		font_usefont(lcdDev->mp, digit,
 			20,         //字体大小
 			250,50,
 			0,255,255,255,
