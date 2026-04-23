@@ -39,7 +39,8 @@ int main(int argc, char const *argv[])
 	LogPrint("SelectionInterface");
 	SelectionInterface(lcdDev);
 
-	//6.等待用户点击
+	//6.等待用户点击  1为商家 2为用户
+	SelectedLcd();
 
     if (-1 != ts_fd)
 	{

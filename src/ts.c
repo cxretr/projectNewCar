@@ -85,9 +85,11 @@ int SelectedLcd()
             if (x >= 350 && x <= 600 && y >= 0 && y <= 250) {
                 LogPrint("Charging pile 1 selected");
                 selected = 1;
+                return 1;
             } else if (x >= 400 && x <= 600 && y >= 200 && y <= 250) {
                 LogPrint("Charging pile 2 selected");
                 selected = 1;
+                return 2;
             } else {
                 LogPrint("Invalid area, continue waiting");
             }
