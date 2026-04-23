@@ -4,6 +4,7 @@
 #include "jpeg.h"
 #include "usefont.h"
 #include "log.h"
+#include "login.h"
 #include "interfaceui.h"
 #include "ts_task.h"  //关于线程API接口的头文件   编译时需要指定  -pthread
 
@@ -68,9 +69,11 @@ int main(int argc, char const *argv[])
 	if (1 == loginclick)
 	{
 		//注册
+		login(lcdDev);
 	}else if ( 2 == loginclick)
 	{
 		//登录
+		logregister();
 	}
 	
 	

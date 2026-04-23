@@ -43,4 +43,6 @@ void SelectionInterface(LcdDev_t *lcdDev);
  */
 void LoginInterface(LcdDev_t *lcdDev);
 
+void showLogin(LcdDev_t *lcdDev);
+
 #endif // INTERFACEUI_H

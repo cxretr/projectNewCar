@@ -63,6 +63,32 @@ void lcd_clear(unsigned int *lcd_mp, unsigned int color)
 }
 
 /**
+ * @name       lcd_fill_rect
+ * @brief      在 LCD 上绘制一个实心矩形
+ * @param      lcd_mp      LCD 显存映射指针
+ * @param      x           矩形左上角 X 坐标
+ * @param      y           矩形左上角 Y 坐标
+ * @param      w           矩形宽度（像素）
+ * @param      h           矩形高度（像素）
+ * @param      color       填充颜色（32位 ARGB）
+ */
+void lcd_fill_rect(unsigned int *lcd_mp, int x, int y, int w, int h, unsigned int color) 
+{
+    // 裁剪：确保矩形不超出屏幕边界
+    int start_x = (x < 0) ? 0 : x;
+    int start_y = (y < 0) ? 0 : y;
+    int end_x = (x + w > SCREEN_W) ? SCREEN_W : x + w;
+    int end_y = (y + h > SCREEN_H) ? SCREEN_H : y + h;
+
+    for (int row = start_y; row < end_y; row++) {
+        unsigned int *dst = lcd_mp + row * SCREEN_W + start_x;
+        for (int col = start_x; col < end_x; col++) {
+            *dst++ = color;
+        }
+    }
+}
+
+/**
  * @name       lcd_uninit
  * @brief      LCD uninitialization LCD解除初始化
  * @param      

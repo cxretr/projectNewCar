@@ -25,6 +25,8 @@
 
 //LCD内存映射的大小
 #define  LCD_MAPSIZE (800*480*4)
+#define  SCREEN_W  800  // 你的 LCD 实际宽度
+#define  SCREEN_H  480  // 你的 LCD 实际高度
 
 typedef struct lcd_deviceinfo
 {
@@ -56,6 +58,18 @@ LcdDev_t *lcd_init(const char *lcd_path);
  * @note       
  */
 void lcd_clear(unsigned int *lcd_mp, unsigned int color);
+
+/**
+ * @name       lcd_fill_rect
+ * @brief      在 LCD 上绘制一个实心矩形
+ * @param      lcd_mp      LCD 显存映射指针
+ * @param      x           矩形左上角 X 坐标
+ * @param      y           矩形左上角 Y 坐标
+ * @param      w           矩形宽度（像素）
+ * @param      h           矩形高度（像素）
+ * @param      color       填充颜色（32位 ARGB）
+ */
+void lcd_fill_rect(unsigned int *lcd_mp, int x, int y, int w, int h, unsigned int color);
 
 /**
  * @name       lcd_uninit

@@ -90,3 +90,32 @@ void LoginInterface(LcdDev_t *lcdDev)
 				255,0,0,0,
 				445,350);  //起始位置
 }
+
+void showLogin(LcdDev_t *lcdDev)
+{
+    LogPrint("showLogin");
+	// 清屏为白色（0xFFFFFFFF 为不透明白色）
+	lcd_clear(lcdDev->mp, 0xFFFFFFFF);
+	// 在需要的位置调用
+    lcd_fill_rect(lcdDev->mp, 200, 150, 400, 225, 0xFF808080);  // 灰色
+
+    //5.显示文字界面
+	LogPrint("font_usefont");
+	for (int i = 1;i <= 9;i++)
+	{
+		int w_a = 0;
+		int h_a = 0;
+		if ((i == 3) || (i == 6) )
+		{
+			w_a = 0;
+			h_a *=10;
+		}
+		font_usefont(lcdDev->mp,i + '0',
+			20,         //字体大小
+			250,50,
+			0,255,255,255,
+			255,0,0,0,
+			300 + w_a * 10,50 + h_a);
+		w_a++;
+	}
+}
