@@ -52,8 +52,28 @@ int main(int argc, char const *argv[])
 	user.start_y = 350;
 	user.end_y = 370;
 
-	//6.等待用户点击  1为商家 2为用户
+	//6.等待用户点击  1为商家 2为用户 商家端不实现
 	int userclick = SelectedLcd(&merchant,&user);
+	if (2 != userclick)
+	{
+		LogPrint("click error");
+	}
+	//7.跳转登录界面
+	LogPrint("LoginInterface");
+	LoginInterface(lcdDev);
+
+	//6.等待用户点击  1为注册 2为登录 因为是一张图片，可以共用
+	int loginclick = SelectedLcd(&merchant,&user);
+	if (1 == loginclick)
+	{
+		//注册
+	}else if ( 2 == loginclick)
+	{
+		//登录
+	}
+	
+	
+	
 
     if (-1 != ts_fd)
 	{

@@ -31,4 +31,16 @@ void BootAnimation(LcdDev_t *lcdDev);
  */
 void SelectionInterface(LcdDev_t *lcdDev);
 
+/**
+ * @name       Login Interface
+ * @brief      Login Interface 登录界面
+ * @param      
+ *             @lcdDev LCD device information lcd设备信息
+ * @retval     none
+ * @date       2026/04/23
+ * @version    1.0
+ * @note       
+ */
+void LoginInterface(LcdDev_t *lcdDev);
+
 #endif // INTERFACEUI_H
