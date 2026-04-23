@@ -38,9 +38,22 @@ int main(int argc, char const *argv[])
 	//5.共享充电桩选择界面
 	LogPrint("SelectionInterface");
 	SelectionInterface(lcdDev);
+    //商家
+	coord_t merchant;
+	merchant.start_x = 270;
+	merchant.end_x = 355;
+	merchant.start_y = 350;
+	merchant.end_y = 370;
+
+    //用户
+	coord_t user;
+	user.start_x = 445;
+	user.end_x = 530;
+	user.start_y = 350;
+	user.end_y = 370;
 
 	//6.等待用户点击  1为商家 2为用户
-	SelectedLcd();
+	int userclick = SelectedLcd(&merchant,&user);
 
     if (-1 != ts_fd)
 	{

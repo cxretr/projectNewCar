@@ -28,6 +28,15 @@
 #define tswidth 1024
 #define tsheight 600
 
+typedef struct ts_coord
+{
+    int start_x;
+    int end_x;
+    int start_y;
+    int end_y;
+}coord_t;
+
+
 /**
  * @name       ts_init
  * @brief      ts initialization ts初始化
@@ -53,6 +62,20 @@ int ts_init(const char *ts_path);
  * @note       
  */
 void ts_getVal(int fd, int *fd_x, int *fd_y);
+
+//用户点击触摸屏
+/**
+ * @name       SelectedLcd
+ * @brief      user click LCD   用户点击LCD
+ * @param      
+ *             @merchant merchant coord 商家坐标
+ *             @user user coord 用户坐标
+ * @retval     none
+ * @date       2026/04/23
+ * @version    1.0
+ * @note       
+ */
+int SelectedLcd(coord_t *merchant, coord_t *user);
 
 
 /**

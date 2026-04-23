@@ -64,7 +64,18 @@ void ts_getVal(int fd, int *fd_x, int *fd_y)
 }
 
 //用户点击触摸屏
-int SelectedLcd()
+/**
+ * @name       SelectedLcd
+ * @brief      user click LCD   用户点击LCD
+ * @param      
+ *             @merchant merchant coord 商家坐标
+ *             @user user coord 用户坐标
+ * @retval     none
+ * @date       2026/04/23
+ * @version    1.0
+ * @note       
+ */
+int SelectedLcd(coord_t *merchant, coord_t *user)
 {
     LogPrint("Waiting for user selection");
     int selected = 0;
@@ -80,13 +91,15 @@ int SelectedLcd()
 
         if (x != 0 || y != 0)
         {
-            printf("Touch at (%d, %d)", x, y);
+            printf("Touch at (x = %d, y = %d)", x, y);
             // 根据选择界面的按钮区域判断（示例坐标，请根据实际界面修改）
-            if (x >= 350 && x <= 600 && y >= 0 && y <= 250) {
+            if (x >= merchant->start_x && x <= merchant->end_x && y >= merchant->start_y && y <= merchant->end_y) 
+            {
                 LogPrint("Charging pile 1 selected");
                 selected = 1;
                 return 1;
-            } else if (x >= 400 && x <= 600 && y >= 200 && y <= 250) {
+            } else if (x >= user->start_x && x <= user->end_x && y >= user->start_y && y <= user->end_y) 
+            {
                 LogPrint("Charging pile 2 selected");
                 selected = 1;
                 return 2;
