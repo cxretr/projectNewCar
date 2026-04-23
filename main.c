@@ -12,7 +12,7 @@ int ts_x;
 int ts_y;
 
 //调用线程
-void * ts_task(void *arg)
+void *ts_task(void *arg)
 {
 	LogPrint("ts_thread start");
     //调用死循环，并且不会退出
@@ -55,6 +55,8 @@ int main(int argc, char const *argv[])
 	//4.共享充电桩选择界面
 	LogPrint("SelectionInterface");
 	SelectionInterface(lcdDev);
+
+	//5.等待用户点击
 
     if (-1 != ts_fd)
 	{
