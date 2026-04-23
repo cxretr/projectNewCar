@@ -57,6 +57,7 @@ int main(int argc, char const *argv[])
 	if (2 != userclick)
 	{
 		LogPrint("click error");
+		return -1;
 	}
 	//7.跳转登录界面
 	LogPrint("LoginInterface");
